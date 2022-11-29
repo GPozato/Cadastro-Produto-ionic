@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-img src="./assets/img/pink.jpeg"></ion-img>
+  </ion-item>
+
+  <form [formGroup]="formLogin">
+    <ion-item fill="outline">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let erro of mensagemErro.email">
+      <ion-label
+        class="msg-erro"
+        *ngIf="email.errors?.[erro.tipo] &&(email.dirty || email.touched)"
+        >{{erro.aviso}}</ion-label
+      >
+    </ng-container>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Senha</ion-label>
+      <ion-input type="password" formControlName="senha"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let erro of mensagemErro.senha">
+      <ion-label
+        class="msg-erro"
+        *ngIf="senha.errors?.[erro.tipo] &&(senha.dirty || senha.touched)"
+        >{{erro.aviso}}</ion-label
+      >
+    </ng-container>
+  </form>
+
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="registro()"expand="block" color="dark">Registrar</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button (click)="entrar()" expand="block" color="success">Entrar</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-button fill="outline" expand="block" color="dark"
+    >Esqueceu a Senha</ion-button
+  >
+</ion-content>

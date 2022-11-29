@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cadastroProduto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="mostrarProdutos()" color="dark" expand="block" fill="outline">
+    Produtos
+  </ion-button>
+
+  <form [formGroup]="formRegistroProduto" class="form">
+    <ion-item>
+      <ion-img src="./assets/img/comida.jpg"></ion-img>
+    </ion-item>
+    <ion-item class="registro" color="dark" expand="full">
+      <ion-label>Registro de Produto</ion-label>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input formControlName="nome"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let erro of mensagemErro.nome">
+      <ion-label
+        class="msg-erro"
+        *ngIf="nome.errors?.[erro.tipo] &&(nome.dirty || nome.touched)"
+        >{{erro.aviso}}</ion-label
+      >
+    </ng-container>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Descrição</ion-label>
+      <ion-input type="text" formControlName="descricao"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let erro of mensagemErro.descricao">
+      <ion-label
+        class="msg-erro"
+        *ngIf="descricao.errors?.[erro.tipo] &&(descricao.dirty || descricao.touched)"
+        >{{erro.aviso}}</ion-label
+      >
+    </ng-container>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Preço</ion-label>
+      <ion-input formControlName="preco"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let erro of mensagemErro.preco">
+      <ion-label
+        class="msg-erro"
+        *ngIf="preco.errors?.[erro.tipo] &&(preco.dirty || preco.touched)"
+        >{{erro.aviso}}</ion-label
+      >
+    </ng-container>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Validade</ion-label>
+      <ion-input type="date" formControlName="validade"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let erro of mensagemErro.validade">
+      <ion-label
+        class="msg-erro"
+        *ngIf="validade.errors?.[erro.tipo] &&(validade.dirty || validade.touched)"
+        >{{erro.aviso}}</ion-label
+      >
+    </ng-container>
+  </form>
+
+  <ion-button (click)="salvar()" color="success" expand="block" fill="outline">
+    Salvar
+  </ion-button>
+</ion-content>
